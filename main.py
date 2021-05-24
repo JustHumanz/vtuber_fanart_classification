@@ -122,14 +122,14 @@ for root, dirs_list, files_list in os.walk(test_path):
 
         predictions = model.predict(img_array)
         score = tf.nn.softmax(predictions[0])
-
-        plt.imshow(mpimg.imread(test_file))
-        plt.title(class_names[np.argmax(score)])
-        plt.show()
         print(
             "This image most likely belongs to {} with a {:.2f} percent confidence."
             .format(class_names[np.argmax(score)], 100 * np.max(score))
         )  
+        
+        plt.imshow(mpimg.imread(test_file))
+        plt.title(class_names[np.argmax(score)])
+        plt.show()
 
 t = time.time()
 pth = "export/"+str(t)+".h5"
